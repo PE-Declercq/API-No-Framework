@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: blue;
+}
+
+#studentForm, #dataDisplay {
+    margin: 20px;
+}
+
+input, button {
+    margin: 5px 0;
+}

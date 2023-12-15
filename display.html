@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Affichage des Données</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button onclick="fetchAndDisplayData('student')">Afficher tous les élèves</button>
+    <button onclick="fetchAndDisplayData('classe')">Afficher toutes les classes</button>
+
+    <div>
+        <input type="text" id="studentId" placeholder="ID de l'élève">
+        <button onclick="fetchAndDisplayDataById('student', document.getElementById('studentId').value)">Rechercher Élève</button>
+    </div>
+
+    <div>
+        <input type="text" id="classId" placeholder="ID de la classe">
+        <button onclick="fetchAndDisplayDataById('class', document.getElementById('classId').value)">Rechercher Classe</button>
+    </div>
+
+    <div id="dataDisplay"></div>
+    <script src="script.js"></script>
+</body>
+</html>
