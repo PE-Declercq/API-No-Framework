@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="addContainer">
+        <select id="addType">
+            <option value="student">Étudiant</option>
+            <option value="classe">Classe</option>
+        </select>
+        <button onclick="showAddForm()">Ajouter</button>
+    </div>
+    <div id="formContainer"></div>    
     <button onclick="fetchAndDisplayData('student')">Afficher tous les élèves</button>
     <button onclick="fetchAndDisplayData('classe')">Afficher toutes les classes</button>
 
@@ -16,7 +24,7 @@
 
     <div>
         <input type="text" id="classId" placeholder="ID de la classe">
-        <button onclick="fetchAndDisplayDataById('class', document.getElementById('classId').value)">Rechercher Classe</button>
+        <button onclick="fetchAndDisplayDataById('classe', document.getElementById('classId').value)">Rechercher Classe</button>
     </div>
 
     <div id="dataDisplay"></div>

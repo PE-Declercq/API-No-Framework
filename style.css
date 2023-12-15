@@ -15,3 +15,34 @@ nav a {
 input, button {
     margin: 5px 0;
 }
+
+.data-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.data-item p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.data-item p strong {
+    color: #007bff;
+}
+
+.data-item button {
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.data-item button:hover {
+    background-color: #0056b3;
+}

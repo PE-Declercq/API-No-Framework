@@ -1,5 +1,8 @@
 <?php
 header('Content-Type: application/json');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
 function readCSV($fileName) {
     $rows = [];
@@ -49,12 +52,18 @@ if ($requestMethod == 'POST') {
     $postData = json_decode(file_get_contents("php://input"), true);
 
     if (
-        isset($postData['id']) &&
         isset($postData['name']) &&
         isset($postData['level'])
     ) {
         $data = readCSV('class.csv');
-        $data[] = $postData;
+        $lastId = end($data)['id'] ?? 0;
+        $newId = $lastId + 1;
+        $newClasse = [
+            'id' => $newId,
+            'name' => $postData['name'],
+            'level' => $postData['level']
+        ];
+        $data[] = $newClasse;
         writeCSV('class.csv', $data);
 
         http_response_code(201);

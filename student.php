@@ -1,5 +1,8 @@
 <?php
 header('Content-Type: application/json');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
 function readCSV($fileName) {
     $rows = [];
@@ -49,7 +52,6 @@ if ($requestMethod == 'POST') {
     $postData = json_decode(file_get_contents("php://input"), true);
 
     if (
-        isset($postData['id']) &&
         isset($postData['lastname']) &&
         isset($postData['firstname']) &&
         isset($postData['email']) &&
@@ -60,7 +62,25 @@ if ($requestMethod == 'POST') {
         isset($postData['class'])
     ) {
         $data = readCSV('students.csv');
-        $data[] = $postData;
+        $lastId = 0;
+        foreach ($data as $row) {
+            if ($row['id'] > $lastId) {
+                $lastId = $row['id'];
+            }
+        }
+        $newId = $lastId + 1;
+        $newStudent = [
+            'id' => $newId,
+            'lastname' => $postData['lastname'],
+            'firstname' => $postData['firstname'],
+            'email' => $postData['email'],
+            'phone' => $postData['phone'],
+            'address' => $postData['address'],
+            'zip' => $postData['zip'],
+            'city' => $postData['city'],
+            'class' => $postData['class']
+        ];
+        $data[] = $newStudent;
         writeCSV('students.csv', $data);
 
         http_response_code(201);
